@@ -14,11 +14,11 @@ interface MinesweeperPrinterTemplate
 	void print();		
 	
 	// 사용자에게 입력을 받는 메소드
-	// (격자식 구조라면 r : 4 , c : 2 이런식으로 받아야 하고 / 번호 구조라면 37 이런식으로 받아야함)
+	// (격자식 구조라면 r : 4 , c : 2 이런식으로 받아야 하고 / 번호 구조라면 42 이런식으로 받아야함)
 	int getNumber();	 
 	
 	// 실패시 출력하는 메소드
 	// 격자식 구조라면 4행 3열은 지뢰다 라고 해야하고
-	// 번호식 구조라면 37번은 지뢰다 라고 해야함
-	String failMsg(int number);	
+	// 번호식 구조라면 43번은 지뢰다 라고 해야함
+	String failMsg();	
 }
