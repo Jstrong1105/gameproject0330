@@ -5,7 +5,7 @@ package game.com.domain.base;
  */
 public class OptionSetter
 {
-	public static <T, E extends Enum<E> & OptionTemplate<T>> void setOption(E[] optionList, T option)
+	public static <T, E extends Enum<E> & OptionSetterTemplate<T>> void setOption(E[] optionList, T option)
 	{
 		for(E list : optionList)
 		{

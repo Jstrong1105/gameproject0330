@@ -12,5 +12,5 @@ public interface GameApp
 	String getGameName();
 	
 	// 게임 설명
-	String getGameExplain();
+	String getGameGuide();
 }
