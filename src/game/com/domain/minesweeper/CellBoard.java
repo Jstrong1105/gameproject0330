@@ -25,7 +25,7 @@ class CellBoard extends CellBoardTemplate
 		{
 			for(int c = 0; c < size; c++)
 			{
-				if(mineToMuch)
+				if(!mineToMuch)
 				{
 					board[r][c] = new Cell(false);
 				}

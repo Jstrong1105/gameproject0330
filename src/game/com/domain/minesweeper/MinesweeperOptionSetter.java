@@ -31,11 +31,11 @@ enum MinesweeperOptionSetter implements OptionSetterTemplate<MinesweeperOption>
 		
 		if(answer == 1)
 		{
-			
+			option.setPrinter(new CellPrinter1());
 		}
 		else
 		{
-			
+			option.setPrinter(new CellPrinter1());
 		}
 	})
 	;

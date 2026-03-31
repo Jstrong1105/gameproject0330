@@ -20,5 +20,5 @@ interface MinesweeperPrinterTemplate
 	// 실패시 출력하는 메소드
 	// 격자식 구조라면 4행 3열은 지뢰다 라고 해야하고
 	// 번호식 구조라면 43번은 지뢰다 라고 해야함
-	String failMsg(int row, int col);	
+	String failMsg(int size,int row, int col);	
 }

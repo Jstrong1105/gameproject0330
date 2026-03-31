@@ -7,7 +7,10 @@ import game.com.domain.base.OptionSetter;
 import game.com.util.ConsoleUtil;
 import game.com.util.InputUtil;
 
-class MinesweeperApp implements GameApp
+/**
+ * 지뢰찾기 구체화
+ */
+public class MinesweeperApp implements GameApp
 {
 	private static final String GAME_NAME = "지뢰찾기";
 	private static final String GAME_GUIDE = "지뢰를 피하세요!";
@@ -114,6 +117,7 @@ class MinesweeperApp implements GameApp
 	// 초기화
 	private void initialize()
 	{
+		running = true;
 		first = true;
 		pRow = -1;
 		pCol = -1;
@@ -194,6 +198,7 @@ class MinesweeperApp implements GameApp
 		if(first)
 		{
 			InputUtil.pause("첫 오픈 전에는 깃발 설치 불가");
+			cancelCell();
 			return;
 		}
 		
@@ -207,12 +212,14 @@ class MinesweeperApp implements GameApp
 		if(first)
 		{
 			InputUtil.pause("첫 오픈 전에는 찬스 사용 불가");
+			cancelCell();
 			return;
 		}
 		
 		if(chance <= 0)
 		{
 			InputUtil.pause("찬스를 모두 소모했습니다.");
+			cancelCell();
 			return;
 		}
 		
@@ -224,7 +231,7 @@ class MinesweeperApp implements GameApp
 			
 			if(!cellBoard.isFlag(pRow, pCol))
 			{
-				cellBoard.toggleFlag(pRow, pCol);
+				toggleFlag();
 			}
 		}
 		else
@@ -260,7 +267,7 @@ class MinesweeperApp implements GameApp
 		}
 		else
 		{
-			String str = printer.failMsg(pRow,pCol);
+			String str = printer.failMsg(size,pRow,pCol);
 			System.out.println(str);
 		}
 	}

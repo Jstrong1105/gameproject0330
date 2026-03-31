@@ -144,11 +144,11 @@ public final class InputUtil
 		{
 			String answer = readString(prompt);
 			
-			if(answer.equals(trueValue))
+			if(answer.equalsIgnoreCase(trueValue))
 			{
 				return true;
 			}
-			else if(answer.equals(falseValue))
+			else if(answer.equalsIgnoreCase(falseValue))
 			{
 				return false;
 			}
