@@ -11,14 +11,14 @@ package game.com.domain.minesweeper;
 interface MinesweeperPrinterTemplate
 {
 	// 보드판을 화면에 그리는 메소드
-	void print();		
+	void print(CellBoardTemplate board);		
 	
 	// 사용자에게 입력을 받는 메소드
 	// (격자식 구조라면 r : 4 , c : 2 이런식으로 받아야 하고 / 번호 구조라면 42 이런식으로 받아야함)
-	int getNumber();	 
+	int getNumber(int size);	 
 	
 	// 실패시 출력하는 메소드
 	// 격자식 구조라면 4행 3열은 지뢰다 라고 해야하고
 	// 번호식 구조라면 43번은 지뢰다 라고 해야함
-	String failMsg();	
+	String failMsg(int row, int col);	
 }

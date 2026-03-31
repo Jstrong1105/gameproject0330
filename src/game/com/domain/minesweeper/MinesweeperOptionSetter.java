@@ -5,6 +5,9 @@ import java.util.function.Consumer;
 import game.com.domain.base.OptionSetterTemplate;
 import game.com.util.InputUtil;
 
+/**
+ * 지뢰찾기 옵션 세터
+ */
 enum MinesweeperOptionSetter implements OptionSetterTemplate<MinesweeperOption>
 {
 	SIZE("사이즈","보드판의 가로,세로 길이를 설정합니다.",(option)->

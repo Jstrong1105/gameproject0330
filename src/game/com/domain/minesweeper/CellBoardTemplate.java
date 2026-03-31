@@ -27,6 +27,11 @@ abstract class CellBoardTemplate
 	// 인접 지뢰를 계산하면 안된다
 	abstract void init(int size, int mineCount);
 	
+	Cell[][] getBoard()
+	{
+		return board;
+	}
+	
 	// 유효한 범위인지 확인하는 메소드
 	boolean isValid(int row, int col)
 	{
@@ -45,6 +50,22 @@ abstract class CellBoardTemplate
 		{
 			throw new IllegalArgumentException("보드판의 범위를 벗어났습니다");
 		}
+	}
+	
+	// 선택하기
+	void choiceCell(int row, int col)
+	{
+		checkArray(row, col);
+		
+		board[row][col].setChoice(true);
+	}
+	
+	// 선택 취소하기
+	void cancleCell(int row, int col)
+	{
+		checkArray(row, col);
+		
+		board[row][col].setChoice(false);
 	}
 	
 	// 첫 입력을 받아서 해당 칸이 지뢰라면 
@@ -195,5 +216,17 @@ abstract class CellBoardTemplate
 	boolean isClear()
 	{
 		return (totalCellCount - mineCount) <= openCellCount;
+	}
+	
+	// 모든 칸을 오픈하는 메소드
+	void forceOpen()
+	{
+		for(int row = 0; row < size; row++)
+		{
+			for(int col = 0; col < size; col++)
+			{
+				board[row][col].forceOpen();
+			}
+		}
 	}
 }

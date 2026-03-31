@@ -26,12 +26,16 @@ class Cell
 	// 인접 지뢰
 	private int adjacentMines;
 	
+	// 선택 여부
+	private boolean choice;
+	
 	// 생성자
 	Cell(boolean mine)
 	{
 		this.mine = mine;
 		status = CellStatus.CLOSED;
 		adjacentMines = 0;
+		choice = false;
 	}
 	
 	// getter
@@ -45,7 +49,14 @@ class Cell
 	
 	boolean isFlagged(){return status == CellStatus.FLAGGED;}
 	
+	boolean isChoice() {return choice;}
+	
 	// setter
+	void setChoice(boolean choice)
+	{
+		this.choice = choice;
+	}
+	
 	void setMine(boolean mine)
 	{
 		this.mine = mine;
