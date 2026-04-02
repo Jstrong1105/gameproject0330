@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import game.com.domain.base.GameApp;
 import game.com.domain.base.OptionSetter;
+import game.com.exception.PlayerException;
 import game.com.util.ConsoleUtil;
 import game.com.util.InputUtil;
 
@@ -29,7 +30,7 @@ public class MinesweeperApp implements GameApp
 	
 	// 실행 흐름
 	@Override
-	public void run()
+	public void run() throws PlayerException
 	{
 		setOption();
 		
@@ -85,13 +86,13 @@ public class MinesweeperApp implements GameApp
 	private HashMap<Integer, Runnable> actionList = new HashMap<>();
 	
 	// 다시 시작
-	private boolean restart()
+	private boolean restart() throws PlayerException
 	{
 		return InputUtil.readBoolean("다시시작하시겠습니까?", "Y", "N");
 	}
 	
 	// 옵션 처리
-	private void setOption()
+	private void setOption() throws PlayerException
 	{
 		ConsoleUtil.clear();
 		InputUtil.pause("지뢰찾기 게임입니다.");
@@ -115,7 +116,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 초기화
-	private void initialize()
+	private void initialize() 
 	{
 		running = true;
 		first = true;
@@ -131,10 +132,12 @@ public class MinesweeperApp implements GameApp
 	{
 		ConsoleUtil.clear();
 		printer.print(cellBoard);
+		System.out.println("지뢰의 수 : " + mineCount);
+		System.out.println("남은 찬스 : " + chance);
 	}
 	
 	// 셀 선택
-	private void cellChoice()
+	private void cellChoice() throws PlayerException
 	{
 		do
 		{
@@ -153,7 +156,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 액션 선택
-	private void actionChoice()
+	private void actionChoice() throws PlayerException
 	{
 		System.out.println("1. 오픈");
 		System.out.println("2. 깃발");
@@ -193,7 +196,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 깃발 토글
-	private void toggleFlag()
+	private void toggleFlag() throws PlayerException
 	{
 		if(first)
 		{
@@ -207,7 +210,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 찬스 사용
-	private void useChance()
+	private void useChance() throws PlayerException
 	{
 		if(first)
 		{

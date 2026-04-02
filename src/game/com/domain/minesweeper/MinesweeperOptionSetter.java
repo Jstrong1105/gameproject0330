@@ -3,6 +3,7 @@ package game.com.domain.minesweeper;
 import java.util.function.Consumer;
 
 import game.com.domain.base.OptionSetterTemplate;
+import game.com.exception.PlayerException;
 import game.com.util.InputUtil;
 
 /**
@@ -35,7 +36,7 @@ enum MinesweeperOptionSetter implements OptionSetterTemplate<MinesweeperOption>
 		}
 		else
 		{
-			option.setPrinter(new CellPrinter1());
+			option.setPrinter(new CellPrinter2());
 		}
 	})
 	;
@@ -64,7 +65,7 @@ enum MinesweeperOptionSetter implements OptionSetterTemplate<MinesweeperOption>
 	}
 
 	@Override
-	public void setOption(MinesweeperOption option)
+	public void setOption(MinesweeperOption option) throws PlayerException
 	{
 		setter.accept(option);
 	}

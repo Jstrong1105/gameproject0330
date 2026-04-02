@@ -20,6 +20,15 @@ class CellBoard extends CellBoardTemplate
 		// 지뢰 비율 50% 여부 확인
 		boolean mineToMuch = (totalCellCount / 2) < mineCount;
 		
+		/*
+		 * 지뢰 비율을 확인하는 이유는
+		 * 지뢰 비율이 50%를 넘지 않으면 전체를 일반 셀로 만들고
+		 * 지뢰를 배치하고
+		 * 
+		 * 지뢰 비율이 50%를 넘으면 전체를 지뢰로 매설하고 
+		 * 일반 셀로 만들기 위함
+		 */
+		
 		// 셀 초기화
 		for(int r = 0; r < size; r++)
 		{
