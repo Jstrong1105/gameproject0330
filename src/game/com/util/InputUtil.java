@@ -22,9 +22,9 @@ public final class InputUtil
 	private static final String EXIT_MSG = "사용자 요구로 프로그램을 종료합니다";
 	
 	private static final String NUMBER_ERR_MSG = "숫자만 입력해주세요.";
-	private static final String NUMBER_RANGE_ERR_MSG = "%d ~ %d 사이로 입력해주세요";
+	private static final String NUMBER_RANGE_ERR_MSG = "%d ~ %d 사이로 입력해주세요\n";
 	
-	private static final String BOOLEAN_ERR_MSG = "%s 또는 %s 를 입력해주세요";
+	private static final String BOOLEAN_ERR_MSG = "%s 또는 %s 를 입력해주세요\n";
 	
 	
 	// 유틸리티 특성 상 인스턴스 생성을 막기 위한 생성자 프라이빗 처리
@@ -34,7 +34,7 @@ public final class InputUtil
 	 * 사용자에게 안내메시지를 띄우고 엔터를 누를때 까지 대기하는 메소드
 	 * 입력 값이 null 일 경우 PlayerException 예외를 던진다
 	 */
-	public static void pause(String prompt) throws PlayerException
+	public static void pause(String prompt)
 	{
 		System.out.print(prompt);
 		
@@ -49,13 +49,18 @@ public final class InputUtil
 		{
 			throw new RuntimeException(e.toString());
 		}
+		catch (PlayerException e) 
+		{
+			System.out.println("강제종료실행");
+			System.exit(1);
+		}
 	}
 	
 	/*
 	 * 사용자에게 안내메시지를 띄우고 문자열을 입력받는 메소드
 	 * 탈출 코드 혹은 null 입력 시 PlayerException 예외를 던진다
 	 */
-	public static String readString(String prompt) throws PlayerException
+	public static String readString(String prompt)
 	{
 		System.out.print(prompt + " : ");
 		
@@ -74,6 +79,12 @@ public final class InputUtil
 		{
 			throw new RuntimeException(e.toString());
 		}
+		catch (PlayerException e) 
+		{
+			System.out.println("강제종료실행");
+			System.exit(1);
+			throw new RuntimeException(e.toString());
+		}
 	}
 	
 	/*
@@ -82,7 +93,7 @@ public final class InputUtil
 	 * 숫자가 아닌 값을 입력한 경우 안내메시지를 띄우고
 	 * 숫자를 입력할때 까지 다시 입력 받는다
 	 */
-	public static int readInt(String prompt) throws PlayerException
+	public static int readInt(String prompt)
 	{
 		while(true)
 		{
@@ -104,7 +115,7 @@ public final class InputUtil
 	 * 숫자가 아닌 값 혹은 범위를 벗어나는 값을 입력한 경우
 	 * 안내 메시지를 띄우고 올바른 값을 입력받을 때 까지 반복한다
 	 */
-	public static int readInt(String prompt, int min, int max) throws PlayerException
+	public static int readInt(String prompt, int min, int max)
 	{
 		prompt = String.format(prompt + " (%d~%d)", min,max);
 		
@@ -116,7 +127,7 @@ public final class InputUtil
 				
 				if(number < min || number > max)
 				{
-					System.out.printf(NUMBER_RANGE_ERR_MSG + "%n",min,max);
+					System.out.printf(NUMBER_RANGE_ERR_MSG,min,max);
 				}
 				else
 				{
@@ -136,7 +147,7 @@ public final class InputUtil
 	 * trueValue 혹은 falseValue 를 입력하지 않으면
 	 * 안내메시지를 띄우고 다시 입력받는다
 	 */
-	public static boolean readBoolean(String prompt, String trueValue, String falseValue) throws PlayerException
+	public static boolean readBoolean(String prompt, String trueValue, String falseValue)
 	{
 		prompt = String.format(prompt + " (%s/%s)", trueValue,falseValue);
 		
@@ -154,7 +165,7 @@ public final class InputUtil
 			}
 			else
 			{
-				System.out.printf(BOOLEAN_ERR_MSG + "%n",trueValue,falseValue);
+				System.out.printf(BOOLEAN_ERR_MSG,trueValue,falseValue);
 			}
 		}
 	}

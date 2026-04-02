@@ -61,7 +61,7 @@ abstract class CellBoardTemplate
 	}
 	
 	// 선택 취소하기
-	void cancleCell(int row, int col)
+	void cancelCell(int row, int col)
 	{
 		checkArray(row, col);
 		

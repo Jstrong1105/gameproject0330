@@ -1,6 +1,5 @@
 package game.com.domain.minesweeper;
 
-import game.com.exception.PlayerException;
 import game.com.util.InputUtil;
 
 /**
@@ -55,12 +54,28 @@ class CellPrinter1 implements MinesweeperPrinterTemplate
 				prompt.append(str);
 			}
 			
-			prompt.append("│\n");
+			prompt.append("│");
+			
+			// 셀 우측의 번호(row)
+			prompt.append("\033[96m");
+			prompt.append(String.format(" %2d ", (row+1)));
+			prompt.append("\033[0m");
+			prompt.append("\n");
 		}
 		
 		// 하단
 		prompt.append(" ".repeat(5));
 		prompt.append(getBottom(3,size));
+		
+		// 하단 번호(column)
+		prompt.append(" ".repeat(5));
+		prompt.append("\033[1;93m");
+		
+		for(int i = 1; i <= size; i++)
+		{
+			prompt.append(String.format(" %2d", i));
+		}
+		prompt.append("\033[0m\n");
 		
 		System.out.print(prompt.toString());
 	}
@@ -101,10 +116,10 @@ class CellPrinter1 implements MinesweeperPrinterTemplate
 	}
 	
 	@Override
-	public int getNumber(int size) throws PlayerException
+	public int getNumber(int size)
 	{
-		int row = InputUtil.readInt("\033[96m" + "열 번호" + "\033[0m",1,size);
-		int col = InputUtil.readInt("\033[93m" + "행 번호" + "\033[0m",1,size);
+		int row = InputUtil.readInt("\033[96m" + "행 번호" + "\033[0m",1,size);
+		int col = InputUtil.readInt("\033[93m" + "열 번호" + "\033[0m",1,size);
 		
 		return ((row-1) * size) + col;
 	}
@@ -112,6 +127,6 @@ class CellPrinter1 implements MinesweeperPrinterTemplate
 	@Override
 	public String failMsg(int size, int row, int col)
 	{
-		return String.format("%d열 %d행은 지뢰입니다.", row+1,col+1);
+		return String.format("%d행 %d열은 지뢰입니다.", row+1,col+1);
 	}
 }

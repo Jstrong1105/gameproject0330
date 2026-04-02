@@ -1,10 +1,11 @@
 package game.com.domain.minesweeper;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 
 import game.com.domain.base.GameApp;
 import game.com.domain.base.OptionSetter;
-import game.com.exception.PlayerException;
 import game.com.util.ConsoleUtil;
 import game.com.util.InputUtil;
 
@@ -30,7 +31,7 @@ public class MinesweeperApp implements GameApp
 	
 	// 실행 흐름
 	@Override
-	public void run() throws PlayerException
+	public void run()
 	{
 		setOption();
 		
@@ -85,14 +86,16 @@ public class MinesweeperApp implements GameApp
 	// 플레이어가 선택 가능한 액션 처리
 	private HashMap<Integer, Runnable> actionList = new HashMap<>();
 	
+	private Instant startTime;
+	
 	// 다시 시작
-	private boolean restart() throws PlayerException
+	private boolean restart()
 	{
 		return InputUtil.readBoolean("다시시작하시겠습니까?", "Y", "N");
 	}
 	
 	// 옵션 처리
-	private void setOption() throws PlayerException
+	private void setOption()
 	{
 		ConsoleUtil.clear();
 		InputUtil.pause("지뢰찾기 게임입니다.");
@@ -125,6 +128,8 @@ public class MinesweeperApp implements GameApp
 		
 		cellBoard = new CellBoard();
 		cellBoard.init(size, mineCount);
+		
+		startTime = Instant.now();
 	}
 	
 	// 화면 출력
@@ -137,7 +142,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 셀 선택
-	private void cellChoice() throws PlayerException
+	private void cellChoice()
 	{
 		do
 		{
@@ -156,7 +161,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 액션 선택
-	private void actionChoice() throws PlayerException
+	private void actionChoice()
 	{
 		System.out.println("1. 오픈");
 		System.out.println("2. 깃발");
@@ -196,7 +201,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 깃발 토글
-	private void toggleFlag() throws PlayerException
+	private void toggleFlag()
 	{
 		if(first)
 		{
@@ -210,7 +215,7 @@ public class MinesweeperApp implements GameApp
 	}
 	
 	// 찬스 사용
-	private void useChance() throws PlayerException
+	private void useChance()
 	{
 		if(first)
 		{
@@ -226,7 +231,6 @@ public class MinesweeperApp implements GameApp
 			return;
 		}
 		
-		chance--;
 		
 		if(cellBoard.isMine(pRow, pCol))
 		{
@@ -235,6 +239,10 @@ public class MinesweeperApp implements GameApp
 			if(!cellBoard.isFlag(pRow, pCol))
 			{
 				toggleFlag();
+			}
+			else
+			{
+				cancelCell();
 			}
 		}
 		else
@@ -248,12 +256,14 @@ public class MinesweeperApp implements GameApp
 			
 			openCell();
 		}
+		
+		chance--;
 	}
 	
 	// 선택 취소
 	private void cancelCell()
 	{
-		cellBoard.cancleCell(pRow, pCol);
+		cellBoard.cancelCell(pRow, pCol);
 	}
 	
 	// 종료 처리
@@ -267,6 +277,8 @@ public class MinesweeperApp implements GameApp
 		if(clear)
 		{
 			System.out.println("축하합니다. 모든 지뢰를 피했습니다.");
+			long clearTime = Duration.between(startTime, Instant.now()).getSeconds();
+			System.out.println("클리어 타임 : " + clearTime + "초");
 		}
 		else
 		{

@@ -1,5 +1,6 @@
 package game.com.domain.minesweeper;
 
+
 /**
  * 지뢰찾기 프린터 인터페이스
  * 콘솔창 이라는 한계로 인해서
@@ -12,7 +13,7 @@ interface MinesweeperPrinterTemplate
 {
 	// 상수
 	static final String CLOSE_SHAPE = "■";
-	static final String FLAG_SHAPE = "P";
+	static final String FLAG_SHAPE = "\033[1;95mP\033[0m";
 	static final String MINE_SHAPE = "※";
 	static final String[] OPEN_SHAPE = {"□","\033[92m①\033[0m","\033[93m②\033[0m","\033[91m③\033[0m","\033[91m④\033[0m","\033[91m⑤\033[0m","\033[91m⑥\033[0m","\033[91m⑦\033[0m","\033[91m⑧\033[0m"};
 	
@@ -21,7 +22,7 @@ interface MinesweeperPrinterTemplate
 	
 	// 사용자에게 입력을 받는 메소드
 	// (격자식 구조라면 r : 4 , c : 2 이런식으로 받아야 하고 / 번호 구조라면 42 이런식으로 받아야함)
-	int getNumber(int size);	 
+	int getNumber(int size);
 	
 	// 실패시 출력하는 메소드
 	// 격자식 구조라면 4행 3열은 지뢰다 라고 해야하고

@@ -19,9 +19,9 @@ public abstract class GameTemplate implements GameApp
 		{
 			// 초기화는 매 게임 시작마다 실행함
 			initialize();
-			run = true;
+			running = true;
 			
-			while(run)
+			while(running)
 			{
 				render();
 				playerInput();
@@ -31,14 +31,14 @@ public abstract class GameTemplate implements GameApp
 		} while (restart());
 	}
 	
-	private boolean run = false;
+	private boolean running = false;
 	
 	/*
 	 * 게임 종료
 	 */
 	protected void endGame()
 	{
-		run = false;
+		running = false;
 	}
 	
 	/*

@@ -1,5 +1,6 @@
 package game.com.domain.base;
 
+
 /**
  * 모든 게임이 상속받아야 하는 인터페이스
  */

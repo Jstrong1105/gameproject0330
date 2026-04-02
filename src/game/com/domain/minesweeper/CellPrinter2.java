@@ -47,6 +47,9 @@ class CellPrinter2 implements MinesweeperPrinterTemplate
 				}
 				else
 				{
+					// 콘솔 창에서 전각문자의 크기가 일정하지 않은 이유로 이렇게 했음
+					// 위에서는 숫자가 1이든 100 이든 3자리로 표시되야하지만
+					// 여기서는 3s 를 넣으면 특수문자가 차지하는 공간이 한칸이 아니여서 3칸이 안됨
 					str = getShape(cell);
 					str = String.format(" %s ", str);
 				}
