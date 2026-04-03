@@ -8,6 +8,7 @@ import java.util.List;
 public class CardPrinter1 implements CardPrinterTemplate
 {
 	private String[] numberShape = {"2","3","4","5","6","7","8","9","T","J","Q","K","A"};
+	private String hidden = "?";
 	
 	@Override
 	public void print(List<Card> cards)
@@ -29,15 +30,22 @@ public class CardPrinter1 implements CardPrinterTemplate
 		// 모양 출력
 		for(Card card : cards)
 		{
-			boolean red = card.getShape().equals("◆") || card.getShape().equals("♥");
-			
-			if(red)
+			if(!card.isOpen())
 			{
-				System.out.printf("\033[1;97m│ \033[1;91m%s \033[1;97m│\033[0m ",card.getShape());
+				System.out.printf("\033[1;97m│ %s │\033[0m ",hidden);
 			}
 			else
 			{
-				System.out.printf("\033[1;97m│ \033[1;90m%s \033[1;97m│\033[0m ",card.getShape());
+				boolean red = card.getShape().equals("◆") || card.getShape().equals("♥");
+				
+				if(red)
+				{
+					System.out.printf("\033[1;97m│ \033[1;91m%s \033[1;97m│\033[0m ",card.getShape());
+				}
+				else
+				{
+					System.out.printf("\033[1;97m│ \033[1;90m%s \033[1;97m│\033[0m ",card.getShape());
+				}
 			}
 		}
 		
@@ -46,15 +54,22 @@ public class CardPrinter1 implements CardPrinterTemplate
 		//숫자 출력
 		for(Card card : cards)
 		{
-			boolean red = card.getShape().equals("◆") || card.getShape().equals("♥");
-			
-			if(red)
+			if(!card.isOpen())
 			{
-				System.out.printf("\033[1;97m│ \033[1;91m%s \033[1;97m│\033[0m ",numberShape[card.getNumber()-2]);
+				System.out.printf("\033[1;97m│ %s │\033[0m ",hidden);
 			}
 			else
 			{
-				System.out.printf("\033[1;97m│ \033[1;90m%s \033[1;97m│\033[0m ",numberShape[card.getNumber()-2]);
+				boolean red = card.getShape().equals("◆") || card.getShape().equals("♥");
+				
+				if(red)
+				{
+					System.out.printf("\033[1;97m│ \033[1;91m%s \033[1;97m│\033[0m ",numberShape[card.getNumber()-2]);
+				}
+				else
+				{
+					System.out.printf("\033[1;97m│ \033[1;90m%s \033[1;97m│\033[0m ",numberShape[card.getNumber()-2]);
+				}
 			}
 		}
 		
