@@ -30,6 +30,8 @@ public final class ThreadUtil
 				System.out.printf("\r%2d초 남았습니다",i);
 				Thread.sleep(1000);
 			}
+		
+			System.out.println();
 		}
 		catch (InterruptedException e)
 		{

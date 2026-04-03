@@ -77,10 +77,10 @@ public class MinesweeperApp implements GameApp
 	// 첫 입력 여부
 	private boolean first;
 	
-	// 플레이어가 선택한 열
+	// 플레이어가 선택한 행
 	private int pRow;
 	
-	// 플레이어가 선택한 행
+	// 플레이어가 선택한 열
 	private int pCol;
 	
 	// 플레이어가 선택 가능한 액션 처리
