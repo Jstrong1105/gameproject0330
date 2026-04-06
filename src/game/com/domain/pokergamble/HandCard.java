@@ -24,6 +24,12 @@ class HandCard
 	}
 	
 	// 카드 추가하기
+	void addCard(Card card)
+	{
+		handCard.add(card);
+	}
+	
+	// 카드 개수 반환
 	int countCard()
 	{
 		return handCard.size();

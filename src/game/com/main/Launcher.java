@@ -6,6 +6,7 @@ import java.util.List;
 import game.com.domain.base.GameApp;
 import game.com.domain.memorygame.MemoryGameApp;
 import game.com.domain.minesweeper.MinesweeperApp;
+import game.com.domain.pokergamble.PokerGambleApp;
 import game.com.util.ConsoleUtil;
 import game.com.util.InputUtil;
 
@@ -17,6 +18,7 @@ public class Launcher
 	{
 		games.add(new MinesweeperApp());
 		games.add(new MemoryGameApp());
+		games.add(new PokerGambleApp());
 		
 		while(true)
 		{
