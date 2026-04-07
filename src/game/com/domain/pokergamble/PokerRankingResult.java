@@ -79,6 +79,8 @@ class PokerRankingResult implements Comparable<PokerRankingResult>
 		return 0;
 	}
 	
+	private String[] displayString = {"2","3","4","5","6","7","8","9","T","J","Q","K","A"};
+	
 	// 결과를 화면에 출력할때 사용할 문자열 생성 메소드
 	String toDisplayString()
 	{
@@ -88,10 +90,10 @@ class PokerRankingResult implements Comparable<PokerRankingResult>
 			case ROYAL_FLUSH,MOUNTAIN,BACK_STRAIGHT -> result.getName();
 			
 			// 키커 한장과 족보 이름 표시
-			case STRAIGHT_FLUSH,FOUR_OF_A_KIND,FLUSH,STRAIGHT,THREE_OF_A_KIND,ONE_PAIR,HIGH_CARD -> kicker.get(0) + " " + result.getName();
+			case STRAIGHT_FLUSH,FOUR_OF_A_KIND,FLUSH,STRAIGHT,THREE_OF_A_KIND,ONE_PAIR,HIGH_CARD -> displayString[kicker.get(0)-2] + " " + result.getName();
 			
 			// 키커 두장과 족보 이름 표시
-			case FULL_HOUSE,TWO_PAIR -> kicker.get(0) + ", " + kicker.get(1) + " " + result.getName();
+			case FULL_HOUSE,TWO_PAIR -> displayString[kicker.get(0)-2] + ", " + displayString[kicker.get(1)-2] + " " + result.getName();
 		};
 	}
 }

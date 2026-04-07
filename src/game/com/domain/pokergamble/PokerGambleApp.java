@@ -2,6 +2,7 @@ package game.com.domain.pokergamble;
 
 import game.com.domain.base.GameTemplate;
 import game.com.domain.base.OptionSetter;
+import game.com.domain.trumpcard.Card;
 import game.com.domain.trumpcard.CardDeck;
 import game.com.domain.trumpcard.CardDeckTemplate;
 import game.com.util.ConsoleUtil;
@@ -225,7 +226,9 @@ public class PokerGambleApp extends GameTemplate
 	
 	private void drawCard()
 	{
-		playerCard.addCard(cardDeck.drawCard());
+		Card card = cardDeck.drawCard();
+		card.open();
+		playerCard.addCard(card);
 		cpuCard.addCard(cardDeck.drawCard());
 	}
 }

@@ -16,11 +16,14 @@ class HandCard
 	
 	private final CardPrinterTemplate printer;	// 카드 프린터
 	
+	private final PokerRankingEvaluator eval;	// 족보 판독기
+	
 	// 생성자
 	HandCard()
 	{
 		handCard = new ArrayList<>();
 		printer = new CardPrinter1();
+		eval = new PokerRankingEvaluator();
 	}
 	
 	// 카드 추가하기
@@ -55,6 +58,6 @@ class HandCard
 	// 결과 반환하기
 	PokerRankingResult getResult()
 	{
-		return null;
+		return eval.getRanking(handCard);
 	}
 }
